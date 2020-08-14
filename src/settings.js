@@ -5,6 +5,7 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the settings right-panel
    */
+   // 设置模板
   showSettings: true,
 
   /**

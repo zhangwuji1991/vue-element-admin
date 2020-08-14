@@ -1,6 +1,5 @@
 <template>
   <div class="singleImageUpload2 upload-container">
-    {{ action }}
     <el-upload
       :action="action"
       :headers="headers"
@@ -36,7 +35,7 @@ export default {
   props: {
     fileList: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     },
@@ -45,37 +44,37 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       action: `${process.env.VUE_APP_BASE_API}book/upload`
     }
   },
   computed: {
-    headers () {
+    headers() {
       return {
         Authorization: `Bearer ${getToken()}`
       }
     }
   },
   methods: {
-    onRemove () {
+    onRemove() {
       this.$message({
         message: '电子书删除成功',
         type: 'success'
       })
       this.$emit('onRemove')
     },
-    onExceed () {
+    onExceed() {
       this.$message({
         message: '每次只能上传一本电子书',
         type: 'warning'
       })
     },
-    beforeUpload (file) {
+    beforeUpload(file) {
       console.log(file)
       this.$emit('beforeUpload', file)
     },
-    onSuccess (response, file) {
+    onSuccess(response, file) {
       console.log('onSuccess', response, file)
       const { code, msg, data } = response
       if (code !== 0) {
@@ -92,7 +91,7 @@ export default {
         this.$emit('onSuccess', data)
       }
     },
-    onError (err) {
+    onError(err) {
       const errMsg = (err.message && JSON.parse(err.message)) || '上传失败'
       this.$message({
         message:

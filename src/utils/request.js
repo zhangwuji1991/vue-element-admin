@@ -36,9 +36,9 @@ service.interceptors.response.use(
       })
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
          // 如果 token 失效，则弹出确认对话框，用户点击后，清空 token 并返回登录页面
-        MessageBox.confirm('',{
-          message: 'Token已经失效，是否重新登录', 
-          title: '确认登出', 
+        MessageBox.confirm('', {
+          message: 'Token已经失效，是否重新登录',
+          title: '确认登出',
           confirmButtonText: '重新登录',
           cancelButtonText: '取消',
           type: 'warning'
@@ -50,13 +50,12 @@ service.interceptors.response.use(
       }
       return Promise.reject(new Error(errMsg))
     } else {
-      console.log(res)
       return res
     }
   },
   error => {
     console.log('err' + error) // for debug
-    const {msg} = error.response.data
+    const { msg } = error.response.data
     Message({
       message: msg || '请求失败',
       type: 'error',

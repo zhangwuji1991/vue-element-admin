@@ -11,7 +11,7 @@ const name = defaultSettings.title || 'vue Element Admin' // page title
 const port = process.env.port || process.env.npm_config_port || 9527 // dev port
 
 module.exports = {
-  publicPath: '/',
+  publicPath: '.',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
@@ -36,7 +36,7 @@ module.exports = {
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
-
+   config.performance .set('hints', false);
     // set svg-sprite-loader
     config.module
       .rule('svg')
